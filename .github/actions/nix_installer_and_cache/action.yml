@@ -1,5 +1,10 @@
 name: Nix Installer
 description: Nix Installer
+inputs:
+  flake_nix_path:
+    description: Flake Nix Path
+    required: true
+
 outputs:
   cache-hit:
     description: "Indicate if cache is hit"
@@ -16,9 +21,9 @@ runs:
       id: nix-cache
       with:
         path: /tmp/nixcache
-        key: cache-nix-${{ github.workflow }}-${{ github.job }}-${{ hashFiles('**/flake.lock') }}
+        key: cache-nix-${{ hashFiles('**/flake.lock') }}
 
     - name: Restore Nix Cache
       shell: bash
-      if: steps.nix-cache.outputs.cache-hit == 'true'
-      run: nix copy --from /tmp/nixcache
+      if: "steps.nix-cache.outputs.cache-hit == 'true'"
+      run: nix copy --from file:///tmp/nixcache ${{ inputs.flake_nix_path }}#devShells.x86_64-linux.default --no-check-sigs

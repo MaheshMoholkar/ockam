@@ -10,4 +10,4 @@ runs:
   steps:
     - name: Cache Nix store
       shell: bash
-      run: nix copy --to /tmp/nixcache ${{ inputs.flake_nix_path }}
+      run: nix copy --to file:///tmp/nixcache ${{ inputs.flake_nix_path }}#devShells.x86_64-linux.default --no-check-sigs

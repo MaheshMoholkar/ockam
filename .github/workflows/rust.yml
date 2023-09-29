@@ -72,6 +72,8 @@ jobs:
 
       - name: Install Nix
         uses: ./.github/actions/nix_installer_and_cache
+        with:
+          flake_nix_path: ./tools/nix
         id: nix-installer
 
       - uses: Swatinem/rust-cache@a95ba195448af2da9b00fb742d14ffaaf3c21f43
@@ -115,6 +117,8 @@ jobs:
 
       - name: Install Nix
         uses: ./.github/actions/nix_installer_and_cache
+        with:
+          flake_nix_path: ./tools/nix
         id: nix-installer
 
       - uses: Swatinem/rust-cache@a95ba195448af2da9b00fb742d14ffaaf3c21f43
@@ -154,6 +158,8 @@ jobs:
 
       - name: Install Nix
         uses: ./.github/actions/nix_installer_and_cache
+        with:
+          flake_nix_path: ./tools/nix
         id: nix-installer
 
       - uses: Swatinem/rust-cache@a95ba195448af2da9b00fb742d14ffaaf3c21f43
@@ -195,6 +201,8 @@ jobs:
 
       - name: Install Nix
         uses: ./.github/actions/nix_installer_and_cache
+        with:
+          flake_nix_path: ./tools/nix
         id: nix-installer
 
       - uses: Swatinem/rust-cache@a95ba195448af2da9b00fb742d14ffaaf3c21f43
@@ -243,6 +251,8 @@ jobs:
 
       - name: Install Nix
         uses: ./ockam_bats/.github/actions/nix_installer_and_cache
+        with:
+          flake_nix_path: ./ockam_bats/tools/nix
         id: nix-installer
 
       - name: Build Binary
@@ -344,6 +354,8 @@ jobs:
 
       - name: Install Nix
         uses: ./ockam_library/.github/actions/nix_installer_and_cache
+        with:
+          flake_nix_path: ./ockam_library/tools/nix
         id: nix-installer
 
       - uses: Swatinem/rust-cache@a95ba195448af2da9b00fb742d14ffaaf3c21f43
@@ -383,6 +395,8 @@ jobs:
 
       - name: Install Nix
         uses: ./ockam/.github/actions/nix_installer_and_cache
+        with:
+          flake_nix_path: ./ockam/tools/nix
         id: nix-installer
 
       - name: Build Example Blocks
@@ -396,6 +410,6 @@ jobs:
 
       - uses: ./ockam/.github/actions/upload_nix_store
         with:
-          flake_nix_path: ./tools/nix
+          flake_nix_path: ./ockam/tools/nix
         if: ${{ steps.nix-installer.outputs.cache-hit != 'true' }}
   
